@@ -1,17 +1,35 @@
+-- Active: 1669845737508@@127.0.0.1@3307
 DROP DATABASE IF EXISTS SpotifyClone;
 
   CREATE DATABASE IF NOT EXISTS SpotifyClone;
 
-  CREATE TABLE SpotifyClone.tabela1(
-      coluna1 tipo restricoes,
-      coluna2 tipo restricoes,
-      colunaN tipo restricoes,
+  CREATE TABLE SpotifyClone.sub_id(
+      sub_id INT PRIMARY KEY AUTO_INCREMENT,
+      sub_type VARCHAR(50) NOT NULL,
+      sub_price DOUBLE NOT NULL,
   ) engine = InnoDB;
 
-  CREATE TABLE SpotifyClone.tabela2(
-      coluna1 tipo restricoes,
-      coluna2 tipo restricoes,
-      colunaN tipo restricoes,
+  CREATE TABLE SpotifyClone.artist_id(
+      artist_id INT PRIMARY KEY AUTO_INCREMENT,
+      artist_name VARCHAR(50) NOT NULL,
+  ) engine = InnoDB;
+
+  CREATE TABLE SpotifyClone.albuns_id(
+      albuns_id INT PRIMARY KEY AUTO_INCREMENT,
+      albuns_name VARCHAR(50) NOT NULL,
+      artist_id INT NOT NULL,
+      FOREIGN KEY (artist_id) REFERENCES SpotifyClone.artist_id (artist_id)
+
+  ) engine = InnoDB;
+
+   CREATE TABLE SpotifyClone.user_id(
+      user_id INT PRIMARY KEY AUTO_INCREMENT,
+      user_name VARCHAR(50) NOT NULL,
+      sub_date DATE NOT NULL,
+      age INT NOT NULL,
+      sub_id INT NOT NULL,
+      Foreign Key (sub_id) REFERENCES SpotifyClone.sub_id (sub_id)
+
   ) engine = InnoDB;
 
   INSERT INTO SpotifyClone.tabela1 (coluna1, coluna2)
